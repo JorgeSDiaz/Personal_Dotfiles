@@ -16,7 +16,7 @@ Personal dotfiles for zsh, tmux, starship, and ghostty — managed with [GNU Sto
 ### 1. Clone the repo
 
 ```bash
-git clone <repo-url> ~/DotFiles
+git clone git@github.com:JorgeSDiaz/Personal_Dotfiles.git ~/DotFiles
 cd ~/DotFiles
 ```
 
@@ -64,8 +64,6 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosugges
 git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.zsh/zsh-syntax-highlighting
 ```
 
-> **Note:** On Ubuntu the zsh plugin paths differ from Arch. After cloning, update the plugin paths in `.zshrc` (currently set to `/usr/share/zsh/plugins/...` for Arch pacman).
-
 Install `lazydocker` via the install script:
 
 ```bash
@@ -82,9 +80,7 @@ brew install zsh tmux git stow starship fzf zoxide lsd neovim bat lazygit btop l
 brew install zsh-autosuggestions zsh-syntax-highlighting
 ```
 
-> **Note:** On macOS the zsh plugin paths also differ. Update the paths in `.zshrc` to point to the Homebrew prefix (e.g. `/opt/homebrew/share/...`).
-
-> **Note:** Ghostty GTK-specific settings (`gtk-tabs-location`, `gtk-single-instance`) are ignored on macOS — no action needed.
+> **Note:** On non-Arch systems the zsh plugin paths differ from `/usr/share/zsh/plugins/...`. Update the paths in `.zshrc` to match your install location (e.g. `~/.zsh/` for manual clones, `/opt/homebrew/share/` for Homebrew).
 
 ### 3. Install dev tool version manager (mise)
 
@@ -122,7 +118,9 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 Start tmux and press `prefix + I` (capital i) to install all plugins.
 
-### Catppuccin tmux theme (manual)
+### Catppuccin tmux theme
+
+The config expects Catppuccin at `~/.config/tmux/plugins/catppuccin/tmux`. Clone it manually (TPM does not manage this plugin by default):
 
 ```bash
 mkdir -p ~/.config/tmux/plugins/catppuccin
