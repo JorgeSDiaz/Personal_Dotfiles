@@ -104,6 +104,7 @@ alias lzd='lazydocker'
 alias top='btop'
 alias c='claude'
 alias csp='claude --dangerously-skip-permissions'
+alias o='opencode'
 
 # ── Funciones ───────────────────────────────────────────────
 
