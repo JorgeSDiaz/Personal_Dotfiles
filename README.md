@@ -1,6 +1,6 @@
 # DotFiles
 
-Personal dotfiles for zsh, tmux, starship, and ghostty — managed with [GNU Stow](https://www.gnu.org/software/stow/).
+Personal dotfiles for zsh, tmux, starship, ghostty, and neovim — managed with [GNU Stow](https://www.gnu.org/software/stow/).
 
 ## Configured Tools
 
@@ -10,6 +10,7 @@ Personal dotfiles for zsh, tmux, starship, and ghostty — managed with [GNU Sto
 | `tmux` | Terminal multiplexer with Catppuccin theme and session persistence |
 | `starship` | Cross-shell prompt with Catppuccin Mocha palette |
 | `ghostty` | Terminal emulator (Linux/macOS) |
+| `nvim` | Neovim with LazyVim (Go, Python, TypeScript, Docker) and Catppuccin theme |
 
 ## Installation
 
@@ -96,7 +97,7 @@ curl https://mise.run | sh
 
 ```bash
 cd ~/DotFiles
-stow zsh tmux starship
+stow zsh tmux starship nvim
 
 # Only if using Ghostty as your terminal
 stow ghostty
