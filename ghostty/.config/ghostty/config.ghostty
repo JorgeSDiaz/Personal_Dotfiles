@@ -1,0 +1,74 @@
+# ── Shell ──────────────────────────────────────────────────────────────────────
+# ssh-env and ssh-terminfo automatically install Ghostty's terminfo on remote
+# hosts, preventing broken rendering when SSH-ing into other machines.
+shell-integration            = zsh
+shell-integration-features   = cursor,sudo,title,ssh-env,ssh-terminfo
+
+# ── Font ───────────────────────────────────────────────────────────────────────
+font-family      = JetBrainsMono Nerd Font
+font-size        = 14
+font-feature     = calt
+font-feature     = liga
+adjust-cell-height = 2
+
+# ── Theme & Colors ─────────────────────────────────────────────────────────────
+# Dual theme: Ghostty automatically switches based on system dark/light mode.
+theme            = dark:Catppuccin Mocha,light:Catppuccin Latte
+# minimum-contrast prevents text from becoming invisible against transparent bg.
+minimum-contrast = 1.1
+
+# ── Window ─────────────────────────────────────────────────────────────────────
+window-decoration     = false
+window-width          = 220
+window-height         = 50
+window-padding-x      = 10
+window-padding-y      = 8
+window-padding-balance = true
+# "extend" makes padding adopt the nearest cell's background color — cleaner
+# with editors like Neovim that set their own background colors.
+window-padding-color  = extend
+gtk-tabs-location     = hidden
+
+# ── Transparency & Blur ────────────────────────────────────────────────────────
+background-opacity       = 0.82
+# background-opacity-cells applies transparency inside apps (nvim, tmux, etc.)
+background-opacity-cells = true
+# background-blur accepts true (intensity 20), false, or an integer.
+background-blur          = 20
+
+# ── Cursor ─────────────────────────────────────────────────────────────────────
+cursor-style         = block
+cursor-style-blink   = true
+# Lets you click anywhere on a shell prompt to move the cursor there.
+# Requires shell integration (OSC 133).
+cursor-click-to-move = true
+
+# ── Mouse ──────────────────────────────────────────────────────────────────────
+mouse-hide-while-typing  = true
+mouse-scroll-multiplier  = 3
+
+# ── Clipboard & Selection ──────────────────────────────────────────────────────
+# "clipboard" copies to both the selection clipboard and the system clipboard.
+copy-on-select                  = clipboard
+link-url                        = true
+clipboard-trim-trailing-spaces  = true
+# Prevents accidental command execution when pasting text that contains newlines.
+clipboard-paste-protection      = true
+
+# ── Notifications ──────────────────────────────────────────────────────────────
+# Only notify when the terminal is not focused, so you are not spammed.
+# Requires Ghostty v1.3.0+.
+notify-on-command-finish        = unfocused
+notify-on-command-finish-after  = 10s
+
+# ── Safety ─────────────────────────────────────────────────────────────────────
+# Prompt before closing a surface that has a running process.
+confirm-close-surface = true
+
+# ── Performance & Misc ─────────────────────────────────────────────────────────
+# Single instance mode: new windows reuse the existing Ghostty process,
+# reducing startup time and memory usage.
+gtk-single-instance = true
+
+# Machine-specific overrides (ignored if the file does not exist).
+config-file = ?~/.config/ghostty/local.ghostty
