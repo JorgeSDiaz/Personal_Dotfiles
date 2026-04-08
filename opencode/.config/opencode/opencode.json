@@ -1,0 +1,41 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": ["opencode-claude-auth"],
+
+  "model": "anthropic/claude-sonnet-4-6",
+  "small_model": "anthropic/claude-haiku-4-5",
+  "agent": {
+    "plan": {
+      "model": "anthropic/claude-opus-4-6"
+    }
+  },
+
+  "permission": {
+    "bash": {
+      "*": "allow",
+      "rm *": "ask",
+      "sudo *": "ask",
+      "git push *": "ask",
+      "npm install *": "ask",
+      "npm i *": "ask",
+      "bun add *": "ask",
+      "bun install *": "ask",
+      "pip install *": "ask",
+      "brew install *": "ask",
+      "apt *": "ask",
+      "apt-get *": "ask"
+    }
+  },
+
+  "compaction": {
+    "auto": false,
+    "prune": false
+  },
+
+  "mcp": {
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp"
+    }
+  }
+}
