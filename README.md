@@ -1,6 +1,6 @@
 # DotFiles
 
-Personal dotfiles for zsh, tmux, starship, ghostty, and neovim — managed with [GNU Stow](https://www.gnu.org/software/stow/).
+Personal dotfiles for zsh, tmux, starship, ghostty, neovim, and claude-code — managed with [GNU Stow](https://www.gnu.org/software/stow/).
 
 ## Configured Tools
 
@@ -11,6 +11,7 @@ Personal dotfiles for zsh, tmux, starship, ghostty, and neovim — managed with 
 | `starship` | Cross-shell prompt with Catppuccin Mocha palette |
 | `ghostty` | Terminal emulator (Linux/macOS) |
 | `nvim` | Neovim with LazyVim (Go, Python, TypeScript, Docker) and Catppuccin theme |
+| `claude` | Claude Code CLI settings and custom Nerd Font status line |
 
 ## Installation
 
@@ -83,7 +84,13 @@ brew install zsh-autosuggestions zsh-syntax-highlighting
 
 > **Note:** On non-Arch systems the zsh plugin paths differ from `/usr/share/zsh/plugins/...`. Update the paths in `.zshrc` to match your install location (e.g. `~/.zsh/` for manual clones, `/opt/homebrew/share/` for Homebrew).
 
-### 3. Install dev tool version manager (mise)
+### 3. Install Claude Code
+
+```bash
+npm install -g @anthropic-ai/claude-code
+```
+
+### 4. Install dev tool version manager (mise)
 
 ```bash
 # Arch
@@ -93,17 +100,17 @@ yay -S mise
 curl https://mise.run | sh
 ```
 
-### 4. Apply dotfiles with Stow
+### 5. Apply dotfiles with Stow
 
 ```bash
 cd ~/DotFiles
-stow zsh tmux starship nvim
+stow zsh tmux starship nvim claude
 
 # Only if using Ghostty as your terminal
 stow ghostty
 ```
 
-### 5. Set zsh as your default shell
+### 6. Set zsh as your default shell
 
 ```bash
 chsh -s $(which zsh)

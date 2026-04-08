@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "defaultMode": "plan"
+  },
+  "model": "opusplan",
+  "language": "Spanish",
+  "skipDangerousModePermissionPrompt": true,
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline-command.sh"
+  }
+}
