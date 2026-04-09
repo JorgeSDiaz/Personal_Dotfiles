@@ -36,6 +36,19 @@
     "context7": {
       "type": "remote",
       "url": "https://mcp.context7.com/mcp"
+    },
+    "basic-memory": {
+      "type": "local",
+      "command": ["uvx", "basic-memory", "mcp"],
+      "enabled": true
+    },
+    "aws-docs": {
+      "type": "local",
+      "command": ["uvx", "awslabs.aws-documentation-mcp-server@latest"],
+      "environment": {
+        "FASTMCP_LOG_LEVEL": "ERROR"
+      },
+      "enabled": true
     }
   }
 }
