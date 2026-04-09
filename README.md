@@ -12,6 +12,7 @@ Personal dotfiles for zsh, tmux, starship, ghostty, neovim, and claude-code — 
 | `ghostty` | Terminal emulator (Linux/macOS) |
 | `nvim` | Neovim with LazyVim (Go, Python, TypeScript, Docker) and Catppuccin theme |
 | `claude` | Claude Code CLI settings and custom Nerd Font status line |
+| `opencode` | OpenCode config, AGENTS.md, plugins, skills, commands, and MCP servers (context7, basic-memory, aws-docs) |
 
 ## Installation
 
@@ -49,7 +50,13 @@ sudo pacman -S wl-clipboard
 AUR packages (use your preferred AUR helper, e.g. `yay`):
 
 ```bash
-yay -S lazydocker ghostty
+yay -S lazydocker ghostty opencode
+```
+
+Install `uv` (required for MCP servers in OpenCode):
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
 #### Ubuntu / Debian
@@ -72,6 +79,18 @@ Install `lazydocker` via the install script:
 curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
 ```
 
+Install `opencode`:
+
+```bash
+curl -fsSL https://opencode.ai/install | sh
+```
+
+Install `uv` (required for MCP servers in OpenCode):
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
 #### macOS
 
 ```bash
@@ -82,6 +101,18 @@ brew install zsh tmux git stow starship fzf zoxide lsd neovim bat lazygit btop l
 brew install zsh-autosuggestions zsh-syntax-highlighting
 ```
 
+Install `opencode`:
+
+```bash
+curl -fsSL https://opencode.ai/install | sh
+```
+
+Install `uv` (required for MCP servers in OpenCode):
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
 > **Note:** On non-Arch systems the zsh plugin paths differ from `/usr/share/zsh/plugins/...`. Update the paths in `.zshrc` to match your install location (e.g. `~/.zsh/` for manual clones, `/opt/homebrew/share/` for Homebrew).
 
 ### 3. Install Claude Code
@@ -90,7 +121,15 @@ brew install zsh-autosuggestions zsh-syntax-highlighting
 npm install -g @anthropic-ai/claude-code
 ```
 
-### 4. Install dev tool version manager (mise)
+### 4. Install OpenCode
+
+OpenCode is available via AUR on Arch (already covered above). For other systems, use the official install script:
+
+```bash
+curl -fsSL https://opencode.ai/install | sh
+```
+
+### 5. Install dev tool version manager (mise)
 
 ```bash
 # Arch
@@ -100,17 +139,17 @@ yay -S mise
 curl https://mise.run | sh
 ```
 
-### 5. Apply dotfiles with Stow
+### 6. Apply dotfiles with Stow
 
 ```bash
 cd ~/DotFiles
-stow zsh tmux starship nvim claude
+stow zsh tmux starship nvim claude opencode
 
 # Only if using Ghostty as your terminal
 stow ghostty
 ```
 
-### 6. Set zsh as your default shell
+### 7. Set zsh as your default shell
 
 ```bash
 chsh -s $(which zsh)
