@@ -137,3 +137,5 @@ extract() {
 (( $+commands[mise] ))     && eval "$(mise activate zsh)"
 (( $+commands[starship] )) && eval "$(starship init zsh)"
 (( $+commands[zoxide] ))   && eval "$(zoxide init zsh)"
+
+. "$HOME/.local/share/../bin/env"
