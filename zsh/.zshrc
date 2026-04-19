@@ -1,13 +1,6 @@
 # ── Guard: solo interactivo ────────────────────────────────
 [[ $- != *i* ]] && return
 
-# ── Tmux: auto-attach ─────────────────────────────────────
-# Inicia tmux automáticamente si: es interactivo, no está ya en tmux,
-# no es una sesión SSH, y tmux está instalado.
-if [[ -z "$TMUX" && -z "$SSH_CONNECTION" ]] && (( $+commands[tmux] )); then
-  exec tmux new-session -A -s main
-fi
-
 # ── Historial ──────────────────────────────────────────────
 [[ -d "${XDG_STATE_HOME}/zsh" ]] || mkdir -p "${XDG_STATE_HOME}/zsh"
 HISTFILE="${XDG_STATE_HOME}/zsh/history"

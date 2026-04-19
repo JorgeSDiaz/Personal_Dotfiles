@@ -4,6 +4,11 @@
 shell-integration            = zsh
 shell-integration-features   = cursor,sudo,title,ssh-env,ssh-terminfo
 
+# ── Command ────────────────────────────────────────────────────────────────────
+# Lanza tmux directamente al abrir Ghostty: attach a la sesión "main" o créala.
+# -A = attach si existe, crea si no. Las panes de tmux heredan $SHELL (zsh).
+command = tmux new-session -A -s main
+
 # ── Font ───────────────────────────────────────────────────────────────────────
 font-family      = JetBrainsMono Nerd Font
 font-size        = 14
@@ -12,8 +17,8 @@ font-feature     = liga
 adjust-cell-height = 2
 
 # ── Theme & Colors ─────────────────────────────────────────────────────────────
-# Dual theme: Ghostty automatically switches based on system dark/light mode.
-theme            = dark:Catppuccin Mocha,light:Catppuccin Latte
+# Paleta generada por matugen a partir del wallpaper actual.
+theme            = matugen
 # minimum-contrast prevents text from becoming invisible against transparent bg.
 minimum-contrast = 1.1
 
