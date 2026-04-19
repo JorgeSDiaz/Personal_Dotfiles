@@ -13,6 +13,7 @@ Personal dotfiles for zsh, tmux, starship, ghostty, neovim, and claude-code — 
 | `nvim` | Neovim with LazyVim (Go, Python, TypeScript, Docker) and Catppuccin theme |
 | `claude` | Claude Code CLI settings and custom Nerd Font status line |
 | `opencode` | OpenCode config, AGENTS.md, plugins, skills, commands, and MCP servers (context7, basic-memory, aws-docs) |
+| `hypr` | Hyprland compositor config (dispatcher + `conf.d/` modular, hyprlock, hypridle, hyprpaper) |
 
 ## Installation
 
@@ -26,6 +27,14 @@ cd ~/DotFiles
 ### 2. Install dependencies
 
 #### Arch Linux
+
+```bash
+# Hyprland compositor
+sudo pacman -S hyprland hyprpaper hypridle hyprlock hyprpolkitagent \
+               swaync network-manager-applet playerctl brightnessctl \
+               wl-clipboard rofi grim slurp
+yay -S grimblast-git matugen-bin vicinae
+```
 
 ```bash
 # Essentials
@@ -43,8 +52,6 @@ sudo pacman -S zsh-autosuggestions zsh-syntax-highlighting
 # Font
 sudo pacman -S ttf-jetbrains-mono-nerd
 
-# Optional: clipboard support (Wayland)
-sudo pacman -S wl-clipboard
 ```
 
 AUR packages (use your preferred AUR helper, e.g. `yay`):
@@ -143,7 +150,7 @@ curl https://mise.run | sh
 
 ```bash
 cd ~/DotFiles
-stow zsh tmux starship nvim claude opencode
+stow zsh tmux starship nvim claude opencode hypr
 
 # Only if using Ghostty as your terminal
 stow ghostty
@@ -196,3 +203,22 @@ brew install p7zip unar zstd
 ## Local machine overrides
 
 Machine-specific settings can be placed in `~/.config/ghostty/local.ghostty` — this file is gitignored and loaded automatically by Ghostty if it exists.
+
+## Hyprland notes
+
+### Monitor configuration
+
+`conf.d/monitors.conf` is calibrated for a dual-monitor setup (DP-2 + HDMI-A-1 at 1080p). Adjust for your hardware after stow — run `hyprctl monitors` to discover your actual monitor IDs.
+
+### Matugen-generated files
+
+`conf.d/matugen-colors.conf`, `hyprlock-colors.conf`, and `hyprpaper.conf` are overwritten by `matugen` whenever you change wallpaper (`Super+Shift+W`). The versions in this repo are Catppuccin Mocha placeholders that allow Hyprland to start on a fresh machine. Run the wallpaper picker after stow to apply your actual theme.
+
+### External dependencies not yet versioned
+
+The following components are referenced in this config but not yet part of this repo. On a fresh machine: the status bar won't appear, the wallpaper picker keybinding won't work, and hyprpaper won't restore the last wallpaper on login.
+
+- `~/.config/matugen/` — color generation templates and config
+- `~/.config/quickshell/mybar/` — Quickshell status bar
+- `~/.local/bin/wallpaper-picker.sh` — rofi-based wallpaper selector
+- `~/.local/bin/start-hyprpaper.sh` — hyprpaper launcher with last-wallpaper restore
