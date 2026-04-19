@@ -4,7 +4,6 @@ import Quickshell
 import Quickshell.Hyprland
 import "modules"
 import "theme"
-import "config"
 
 ShellRoot {
     Component.onCompleted: {
