@@ -16,7 +16,7 @@ Item {
         spacing: 8
 
         Repeater {
-            model: 5
+            model: 10
 
             delegate: Item {
                 required property int index

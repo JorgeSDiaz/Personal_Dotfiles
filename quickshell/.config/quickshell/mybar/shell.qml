@@ -3,6 +3,7 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Hyprland
 import "modules"
+import "services"
 import "theme"
 
 ShellRoot {
@@ -11,6 +12,17 @@ ShellRoot {
         Quickshell.reloadFailed.connect(() => Quickshell.inhibitReloadPopup())
     }
 
+    NetworkService { id: networkService }
+
+    // ─── Sidebars (uno por monitor) ────────────────────────────────────────
+    Variants {
+        model: Quickshell.screens
+        NetworkSidebar {
+            service: networkService
+        }
+    }
+
+    // ─── Barras (una por monitor) ──────────────────────────────────────────
     Variants {
         model: Quickshell.screens
 
@@ -74,7 +86,7 @@ ShellRoot {
                     }
                 }
 
-                // Derecha: tray + volumen
+                // Derecha: network + volumen + tray
                 Item {
                     Layout.fillWidth: true
                     Layout.fillHeight: true
@@ -83,11 +95,28 @@ ShellRoot {
                         anchors { right: parent.right; verticalCenter: parent.verticalCenter }
                         spacing: 8
 
-                        Island {
-                            paddingH: 10
-                            paddingV: 4
-                            visible: trayItem.implicitWidth > 0
-                            Tray { id: trayItem }
+                        Item {
+                            id: netBox
+                            implicitWidth: netIsland.implicitWidth
+                            implicitHeight: netIsland.implicitHeight
+
+                            Island {
+                                id: netIsland
+                                width: parent.width
+                                height: parent.height
+                                Network {
+                                    id: net
+                                    service: networkService
+                                }
+                            }
+
+                            HoverHandler {
+                                onHoveredChanged: net.hovered = hovered
+                            }
+
+                            TapHandler {
+                                onTapped: networkService.sidebarOpen = !networkService.sidebarOpen
+                            }
                         }
 
                         Item {
@@ -109,6 +138,13 @@ ShellRoot {
                             TapHandler {
                                 onTapped: Quickshell.execDetached(["pavucontrol"])
                             }
+                        }
+
+                        Island {
+                            paddingH: 10
+                            paddingV: 4
+                            visible: trayItem.implicitWidth > 0
+                            Tray { id: trayItem }
                         }
                     }
                 }
