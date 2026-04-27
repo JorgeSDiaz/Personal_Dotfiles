@@ -132,3 +132,6 @@ extract() {
 (( $+commands[zoxide] ))   && eval "$(zoxide init zsh)"
 
 . "$HOME/.local/share/../bin/env"
+
+# opencode
+export PATH=/home/david/.opencode/bin:$PATH
