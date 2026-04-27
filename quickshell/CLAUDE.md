@@ -1,8 +1,8 @@
 # CLAUDE.md — quickshell/
 
-Stows into `~/.config/quickshell/`. Custom Hyprland status bar (`mybar`) written in QML for Quickshell.
+Stows into `~/.config/quickshell/`. Custom Hyprland status bar (`hyperbar`) written in QML for Quickshell.
 
-Launched by Hyprland via `exec-once = qs -p ~/.config/quickshell/mybar` in `hypr/.config/hypr/conf.d/autostart.conf`.
+Launched by Hyprland via `exec-once = qs -p ~/.config/quickshell/hyperbar` in `hypr/.config/hypr/conf.d/autostart.conf`.
 
 ## Architecture
 

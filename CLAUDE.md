@@ -61,7 +61,7 @@ These files are rewritten whenever the user changes wallpaper (`Super+Shift+W`).
 - `hypr/.config/hypr/hyprlock-colors.conf`
 - `hypr/.config/hypr/hyprpaper.conf`
 - `tmux/.config/tmux/matugen.conf` (sourced at the end of `tmux.conf`, may not exist on fresh installs — sourced with `-q`)
-- `quickshell/.config/quickshell/mybar/theme/Palette.qml` (values are matugen-derived but the file is edited as QML)
+- `quickshell/.config/quickshell/hyperbar/theme/Palette.qml` (values are matugen-derived but the file is edited as QML)
 
 If you need to change theme behavior, edit the *consumers* of these variables, not the generated files themselves.
 

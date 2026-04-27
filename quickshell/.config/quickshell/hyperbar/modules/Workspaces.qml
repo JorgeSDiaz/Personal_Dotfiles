@@ -27,6 +27,7 @@ Item {
                     return ws !== null && ws !== undefined && !isActive
                 }
 
+                visible: wsId <= 8 || isActive || isOccupied
                 Layout.alignment: Qt.AlignVCenter
                 implicitWidth: 14
                 implicitHeight: 14

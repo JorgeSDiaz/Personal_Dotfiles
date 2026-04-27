@@ -13,6 +13,7 @@ ShellRoot {
     }
 
     NetworkService { id: networkService }
+    PowerService   { id: powerService }
 
     // ─── Sidebars (uno por monitor) ────────────────────────────────────────
     Variants {
@@ -20,6 +21,11 @@ ShellRoot {
         NetworkSidebar {
             service: networkService
         }
+    }
+
+    Variants {
+        model: Quickshell.screens
+        PowerMenu { service: powerService }
     }
 
     // ─── Barras (una por monitor) ──────────────────────────────────────────
@@ -50,6 +56,22 @@ ShellRoot {
                         anchors { left: parent.left; verticalCenter: parent.verticalCenter }
                         spacing: 8
 
+                        Item {
+                            id: powerBox
+                            implicitWidth: powerIsland.implicitWidth
+                            implicitHeight: powerIsland.implicitHeight
+
+                            Island {
+                                id: powerIsland
+                                width: parent.width
+                                height: parent.height
+                                Power { id: pwr; service: powerService }
+                            }
+
+                            HoverHandler { onHoveredChanged: pwr.hovered = hovered }
+                            TapHandler   { onTapped: powerService.menuOpen = !powerService.menuOpen }
+                        }
+
                         Island {
                             paddingH: 10
                             paddingV: 4
@@ -59,16 +81,38 @@ ShellRoot {
                         Island {
                             paddingH: 12
                             paddingV: 4
-                            visible: (Hyprland.focusedClient?.title ?? "").length > 0
+                            visible: (Hyprland.activeToplevel?.title ?? "").length > 0
 
-                            Text {
-                                Layout.maximumWidth: 276
-                                text: Hyprland.focusedClient?.title ?? ""
-                                font.family: "JetBrainsMono Nerd Font"
-                                font.pixelSize: 13
-                                color: leftPal.on_surface
-                                opacity: 0.7
-                                elide: Text.ElideRight
+                            Item {
+                                id: marqueeBox
+                                readonly property int maxW: 130
+                                readonly property int overflow: Math.max(0, titleText.implicitWidth - maxW)
+                                implicitWidth: Math.min(titleText.implicitWidth, maxW)
+                                implicitHeight: titleText.implicitHeight
+                                clip: true
+
+                                Text {
+                                    id: titleText
+                                    text: Hyprland.activeToplevel?.title ?? ""
+                                    font.family: "JetBrainsMono Nerd Font"
+                                    font.pixelSize: 13
+                                    color: leftPal.secondary
+                                    onTextChanged: x = 0
+                                }
+
+                                SequentialAnimation {
+                                    running: marqueeBox.overflow > 0
+                                    loops: Animation.Infinite
+                                    PauseAnimation  { duration: 2000 }
+                                    NumberAnimation {
+                                        target: titleText; property: "x"
+                                        to: -marqueeBox.overflow
+                                        duration: marqueeBox.overflow * 30
+                                        easing.type: Easing.Linear
+                                    }
+                                    PauseAnimation  { duration: 1200 }
+                                    NumberAnimation { target: titleText; property: "x"; to: 0; duration: 0 }
+                                }
                             }
                         }
                     }
